@@ -1,3 +1,11 @@
+<?php
+
+ session_start();
+ $s_id = $_SESSION['id'];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +29,13 @@
     <aside>
         <div id="sidebar">
             <ul>
-                <li> <a href="#" ><img src="icons/home.png" alt="home" class="side-images"/>
+                <li> <a href="dashboard.html" ><img src="icons/home.png" alt="home" class="side-images"/>
                     Home</a></li>
                     
-                <li> <a href="#" ><img src="icons/add-user.png" alt="home" class="side-images"/>
+                <li> <a href="createuser.html" ><img src="icons/add-user.png" alt="home" class="side-images"/>
                     Add User</a></li>
 
-                <li> <a href="#" ><img src="icons/plus.png" alt="home" class="side-images"/>
+                <li> <a href="issuedetails.html" ><img src="icons/plus.png" alt="home" class="side-images"/>
                     New Issue</a></li>
 
                 <li> <a href="#" ><img src="icons/power-off.png" alt="home" class="side-images"/>
@@ -40,27 +48,27 @@
     <div id = "adduser">
         <h1>New User</h1>
 
-        <form>
-            
-        <label>First Name</label><br>
-        <input type = "text" > <br><br>
-        <label>Last Name</label><br>
-        <input type = "text" ><br><br>
-        <label>Password</label><br>
-        <input type = "text" > <br><br>
-        <label>Email</label><br>
-        <input type = "text" ><br><br>
-        <button type = "submit" name = "submit">Submit</button>
+        <form method>
 
+        <label>First Name</label><br>
+        <input type = "text" name = "firstname" id="firstname" > <br><br>
+
+        <label>Last Name</label><br>
+        <input type = "text" name = "lastname" id="lastname" ><br><br>
+
+        <label>Password</label><br>
+        <input type = "text" name = "password" id="password"> <br><br>
+
+        <label>Email</label><br>
+        <input type = "email" name = "email" id="email" ><br><br>
+
+        <button type = "submit" name = "submit" id = "sbtn">Submit</button>
 
 
         </form>
     </div>
 
 </div>
-
-
-
 
 </body>
 
