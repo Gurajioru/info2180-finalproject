@@ -1,126 +1,84 @@
-window.onload = function (){
-
-    let btn = document.getElementById('sbtn');
-    let fname = document.getElementById('fName');
-    let lname = document.getElementById('lName');
-    let pwrd = document.getElementById('passwrd');
-    let email = document.getElementById('email');
-    let errorc; 
+window.onload = function () {
     
+    let btn = document.getElementById("sbtn");
 
+	let firstname = document.getElementById("firstname");
+	let lastname = document.getElementById("lastname");
+	let password = document.getElementById("password");
+	let email = document.getElementById("email");
+	let result = document.getElementById("result");
 
-    btn.addEventListener('click',function(e){
+	btn.addEventListener("click", function (e) {
 
-        console.log(test);
-        e.preventDefault();
-        httpxmlr = new XMLHttpRequest();
+		e.preventDefault();
 
+		if (Validate() == true) {
 
-        if (fname.value == "" || fname.value == null) {
+			let request = new XMLHttpRequest();
 
-            fname.classList.add("incorrect");
-        }
+			var urlcode =
+				"../php/adduserphp.php?firstname=" +
+				firstname.value +
+				"&lastname=" +
+				lastname.value +
+				"&password=" +
+				password.value +
+				"&email=" +
+				email.value;
 
-        else if (fname.value !== "" || fname.value !== null){
+                request.onreadystatechange = function () {
 
-            if (fname.value.match()){
+				if (request.readyState == XMLHttpRequest.DONE) {
 
-                fname.classList.add("correct");
+					if (request.status == 200) {
 
-            }else{
+						let issue = request.responseText;
+						result.innerHTML = issue;
 
-                fname.classList.add("incorrect");
-                erroc++;
+					} else {
 
-            }
-        }
+						alert("Error");
+					}
+				}
+			};
 
-        if(lname.value == "" || fname.value == null){
+			request.open("POST", urlcode, true);
+			request.send();
+			firstname.value = "";
+			lastname.value = "";
+			password.value = "";
+			email.value = "";
+		}
+	});
+};
 
+function Validate() {
+	
+    let validchk = true;
+    let pregex = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$/;
+    let eregex = /.{1,}@[^.]{1,}/;
 
-            lname.classList.add("incorrect")
-        }
+    if (firstname.value == " " || firstname.value == null) {
+		result.innerHTML = "Make sure to enter all fields";
+		validchk = false;
+	}
+	if (lastname.value == "" || lastname.value == null) {
+		result.innerHTML = "Make sure to enter all fields";
+		validchk = false;
+	}
+    if (!email.value.match(eregex)) {
+        result.innerHTML = "Enter a valid email address";
+        validchk = false;
+    }
+	if (!password.value.match(pregex)) {
+		result.innerHTML =
+			"Your password must be at least 8 characters which includes 1 capital letter and 1 number";
+        validchk = false;
+    }
 
-        else if (lname.value !== "" || lname.value !== null){
-
-            if (lname.value.match()){
-
-                lname.classList.add("correct");
-
-            }else{
-
-                lname.classList.add("incorrect");
-                erroc++;
-
-            }
-        }
-
-        if(pwrd.value == "" || pwrd.value == null){
-
-
-            pwrd.classList.add("incorrect")
-        }    
-
-        else if (pwrd.value !== "" || pwrd.value !== null){
-
-            if (pwrd.value.match()){
-
-                pwrd.classList.add("correct");
-
-            }else{
-
-                pwrd.classList.add("incorrect");
-                erroc++;
-
-            }
-        }
-
-        if(email.value == "" || email.value == null){
-
-
-            lname.classList.add("incorrect")
-         }
-
-        else if (email.value !== "" || email.value !== null){
-
-            if (email.value.match()){
-
-                email.classList.add("correct");
-
-            }else{
-
-                email.classList.add("incorrect");
-                erroc++;
-
-            }
-
-        } 
-
-
-        if (errorc < 1){
-
-            httpR.onreadystatechange = function(){
-
-                if (httpR.readyState === XMLHttpRequest.DONE && httpR.status === 200){
-
-                    let x  = httpR.responseText;
-
-                }
-                if (httpR.readyState === XMLHttpRequest.DONE && httpR.status === 404){
-
-                }
-            }
-            
-            let data = 'fname='+fname.value+'&lname='+lname.value+'&pwrd='+pwrd.value+'&email='+email.value;
-            httpR.open('POST', '../php/adduserphp.php', true);
-            httpR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            httpR.send(data);
-
-
-        }
-
-
-    });
-
-
+	if (validchk) {
+		return true;
+	} else {
+		return false;
+	}
 }

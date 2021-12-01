@@ -17,10 +17,10 @@ DROP TABLE IF EXISTS `issues`;
 CREATE TABLE `issues`(
     `id` INTEGER AUTO_INCREMENT,
     `title` VARCHAR(40),
-    `description` TEXT,
-    `type` VARCHAR(40),
+    `_description` TEXT,
+    `_type` VARCHAR(40),
     `priority` VARCHAR(40),
-    `status` VARCHAR(40),
+    `_status` VARCHAR(40),
     `assigned_to` INTEGER,
     `created_by` INTEGER,
     `created` DATETIME default CURRENT_TIMESTAMP,
@@ -28,5 +28,5 @@ CREATE TABLE `issues`(
     PRIMARY KEY (`id`)
 );
 
-INSERT into Users(firstname,lastname,pwrd,email,date_joined)
-VALUES (`Test`,`Last`,`orange`,`project2@gmail.com`,NOW());
+
+GRANT ALL PRIVILEGES ON bugme.* TO 'admin'@'localhost' IDENTIFIED BY 'bugmin';
