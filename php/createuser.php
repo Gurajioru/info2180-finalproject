@@ -29,16 +29,16 @@
     <aside>
         <div id="sidebar">
             <ul>
-                <li> <a href="dashboard.html" ><img src="../icons/home.png" alt="home" class="side-images"/>
+                <li> <a href="../php/dashboard.php" ><img src="../icons/home.png" alt="home" class="side-images"/>
                     Home</a></li>
                     
-                <li> <a href="createuser.php" ><img src="../icons/add-user.png" alt="home" class="side-images"/>
+                <li> <a href="../php/createuser.php" ><img src="../icons/add-user.png" alt="home" class="side-images"/>
                     Add User</a></li>
 
-                <li> <a href="../issuedetails.html" ><img src="../icons/plus.png" alt="home" class="side-images"/>
+                <li> <a href="../php/createissue.php" ><img src="../icons/plus.png" alt="home" class="side-images"/>
                     New Issue</a></li>
 
-                <li> <a href="#" ><img src="../icons/power-off.png" alt="home" class="side-images"/>
+                <li> <a href="../php/logout.php" ><img src="../icons/power-off.png" alt="home" class="side-images"/>
                     Logout</a></li>
             </ul>
         </div>         
@@ -48,18 +48,22 @@
         <div id = "adduser">
             <h1>New User</h1>
 
+            <div id = "result">
+            </div>
+            
             <form>
+        
 
-            <label>First Name</label><br>
+            <label class = "formheading">First Name</label><br>
             <input type = "text" name = "firstname" id="firstname" > <br><br>
 
-            <label>Last Name</label><br>
+            <label class = "formheading">Last Name</label><br>
             <input type = "text" name = "lastname" id="lastname" ><br><br>
 
-            <label>Password</label><br>
+            <label class = "formheading">Password</label><br>
             <input type = "text" name = "password" id="password"> <br><br>
 
-            <label>Email</label><br>
+            <label class = "formheading">Email</label><br>
             <input type = "email" name = "email" id="email" ><br><br>
 
             <button type = "submit" name = "sbtn" id = "sbtn">Submit</button>
@@ -68,8 +72,6 @@
             </form>
         </div>
         
-        <div id = "result">
-        </div>
 
 </div>
 

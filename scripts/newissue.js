@@ -1,54 +1,49 @@
 window.onload = function () {
-    
-    let btn = document.getElementById("submit");
 
-	let title = document.getElementById("title");
-	let description = document.getElementById("description");
-	let type = document.getElementById("type");
-    let priority = document.getElementById("Priority");
+	let btn = document.getElementById("submit");
 	let result = document.getElementById("result");
-    let prioritychosen = priority.options[priority.selectedIndex].text;
-    let typechosen = type.options[type.selectedIndex].text;
-    let userList = document.getElementById("assignedto");
-    let selectedUser = userList.options[userList.selectedIndex].text;
+
 	btn.addEventListener("click", function (e) {
 
 		e.preventDefault();
 
-		if (Validate() == true) {
+		var title = document.getElementById("title");
+		var description = document.getElementById("description");
+		var userList = document.getElementById("assignedto");
+		var selectedUser = userList.options[userList.selectedIndex].text;
+		var priority = document.getElementById("priority");
+		var prioritychosen = priority.options[priority.selectedIndex].text;
+		var type = document.getElementById("type");
+		var typechosen = type.options[type.selectedIndex].text;
 
-			let request = new XMLHttpRequest();
+		if (Validate() == true){
 
+			var hrequest = new XMLHttpRequest();
 			var urlcode =
-				"../php/newissue.php?title=" +
+				"addissue.php?title=" +
 				title.value +
 				"&description=" +
 				description.value +
 				"&assignedto=" +
-				selectedUser.value +
-				"&prioritychosen =" +
-				prioritychosen.value
-                "&type=" +
-				typechosen.value;
+				selectedUser +
+				"&priority=" +
+				prioritychosen +
+				"&type=" +
+				typechosen;
 
-                request.onreadystatechange = function () {
-
-				if (request.readyState == XMLHttpRequest.DONE) {
-
-					if (request.status == 200) {
-
-						let issue = request.responseText;
+			hrequest.onreadystatechange = function () {
+				if (hrequest.readyState == XMLHttpRequest.DONE) {
+					if (hrequest.status == 200) {
+						var issue = hrequest.responseText;
 						result.innerHTML = issue;
-
 					} else {
-
-						alert("Error");
+						alert("Error Detected");
 					}
 				}
 			};
 
-			request.open("POST", urlcode, true);
-			request.send();
+			hrequest.open("POST", urlcode, true);
+			hrequest.send();
 			title.value = "";
 			description.value = "";
 		}
@@ -57,31 +52,28 @@ window.onload = function () {
 
 function Validate() {
 	
-	let title = document.getElementById("title");
-	let description = document.getElementById("description");
-	let type = document.getElementById("type");
-    let priority = document.getElementById("Priority");
-	let result = document.getElementById("result");
-    let prioritychosen = priority.options[priority.selectedIndex].text;
-    let typechosen = type.options[type.selectedIndex].text;
-    let userList = document.getElementById("assignedto");
-    let selectedUser = userList.options[userList.selectedIndex].text;
     let validchk = true;
+	var title = document.getElementById("title");
+	var description = document.getElementById("description");
+	var userList = document.getElementById("assignedto");
+	var selectedUser = userList.options[userList.selectedIndex].text;
 
+	if (title.value.length < 1) {
+		title.style.borderColor = "red";
+		result.innerHTML = "Please Enter all Fields";
+		validchk = false;
+	}
+	if (description.value.length < 1) {
+		description.style.borderColor = "red";
+		result.innerHTML = "Please Enter all Fields";
+		validchk = false;
+	}
 
-    if (title.value == "" || title.value == null) {
-        result.innerHTML = "Please Enter all Fields";
-        validchk = false;
-    }
-    if (description.value.length == "" || description.value == null) {
-        result.innerHTML = "Please Enter all Fields";
-        validchk = false;
-    }
-
-    if (selectedUser == "Select an option") {
-        result.innerHTML = "Please Enter all Fields";
-        validchk = false;
-    }
+	if (selectedUser == "Please Select") {
+		userList.style.borderColor = "red";
+		result.innerHTML = "Please Enter all Fields";
+		validchk = false;
+	}
 
 	if (validchk) {
 		return true;

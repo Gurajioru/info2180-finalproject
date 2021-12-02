@@ -14,19 +14,18 @@ CREATE TABLE `users` (
 );
 
 DROP TABLE IF EXISTS `issues`;
-CREATE TABLE `issues`(
+CREATE TABLE `issues` (
     `id` INTEGER AUTO_INCREMENT,
-    `title` VARCHAR(40),
+    `title` VARCHAR(64),
     `_description` TEXT,
-    `_type` VARCHAR(40),
-    `priority` VARCHAR(40),
-    `_status` VARCHAR(40),
+    `_priority` VARCHAR(64),
+    `_type` VARCHAR(64),
+    `_status` VARCHAR(64),
     `assigned_to` INTEGER,
     `created_by` INTEGER,
-    `created` DATETIME default CURRENT_TIMESTAMP,
-    `updated` DATETIME default CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-);
+    `created` DATETIME,
+    `updated` DATETIME,
+    PRIMARY KEY(id));
 
 
 GRANT ALL PRIVILEGES ON bugme.* TO 'admin'@'localhost' IDENTIFIED BY 'bugmin';
