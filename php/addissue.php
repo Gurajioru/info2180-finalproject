@@ -9,24 +9,22 @@ try{
     $type= filter_input(INPUT_GET,"type",FILTER_SANITIZE_STRING); 
     $priority= filter_input(INPUT_GET,"priority",FILTER_SANITIZE_STRING);
     $status="OPEN";
-    $insert=true;
     $sessionid = 1;
     $assignid = 1;
-    if ($insert){
-        $myids = $conn->query("SELECT id FROM Users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
-        $myidsfinals = $myids->fetch(PDO::FETCH_ASSOC);
-        $stmt=$conn->prepare('INSERT INTO Issues (title, _description, _priority, _type, _status, assigned_to, created_by, created, updated)
-        VALUES ( :title, :_description,:priority,:_type,:_status,:assignid,:createid , NOW(), NOW());');
-        $stmt->bindParam(":title",$title);
-        $stmt->bindParam(":_description", $description);
-        $stmt->bindParam(":priority", $priority);
-        $stmt->bindParam(":_type", $type);
-        $stmt->bindParam(":_status",$status);
-        $stmt->bindParam(":createid", $sessionid);
-        $stmt->bindParam(":assignid", $assignid);
-        $stmt->execute();
-        echo"Issue successfully inserted.";
-    }
+
+    $myids = $conn->query("SELECT id FROM Users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
+    $stmt=$conn->prepare('INSERT INTO Issues (title, _description, _priority, _type, _status, assigned_to, created_by, created, updated)
+    VALUES ( :title, :_description,:priority,:_type,:_status,:assignid,:createid , NOW(), NOW());');
+    $stmt->bindParam(":title",$title);
+    $stmt->bindParam(":_description", $description);
+    $stmt->bindParam(":priority", $priority);
+    $stmt->bindParam(":_type", $type);
+    $stmt->bindParam(":_status",$status);
+    $stmt->bindParam(":createid", $sessionid);
+    $stmt->bindParam(":assignid", $assignid);
+    $stmt->execute();
+    echo"Issue created.";
+    
 }catch(PDOException $pe) {
     die("Could not connect to the database $dbname :" . $pe->getMessage());
 }
