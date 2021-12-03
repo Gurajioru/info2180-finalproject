@@ -12,7 +12,6 @@ try{
     $sessionid = 1;
     $assignid = 1;
 
-    $myids = $conn->query("SELECT id FROM Users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
     $stmt=$conn->prepare('INSERT INTO Issues (title, _description, _priority, _type, _status, assigned_to, created_by, created, updated)
     VALUES ( :title, :_description,:priority,:_type,:_status,:assignid,:createid , NOW(), NOW());');
     $stmt->bindParam(":title",$title);
