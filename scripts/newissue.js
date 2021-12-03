@@ -7,19 +7,19 @@ window.onload = function () {
 
 		e.preventDefault();
 
-		var title = document.getElementById("title");
-		var description = document.getElementById("description");
-		var userList = document.getElementById("assignedto");
-		var selectedUser = userList.options[userList.selectedIndex].text;
-		var priority = document.getElementById("priority");
-		var prioritychosen = priority.options[priority.selectedIndex].text;
-		var type = document.getElementById("type");
-		var typechosen = type.options[type.selectedIndex].text;
+		let title = document.getElementById("title");
+		let description = document.getElementById("description");
+		let userList = document.getElementById("assignedto");
+		let selectedUser = userList.options[userList.selectedIndex].text;
+		let priority = document.getElementById("priority");
+		let selectedPriority = priority.options[priority.selectedIndex].text;
+		let type = document.getElementById("type");
+		let selectedType = type.options[type.selectedIndex].text;
 
 		if (Validate() == true){
 
-			var hrequest = new XMLHttpRequest();
-			var urlcode =
+			let request = new XMLHttpRequest();
+			let urlcode =
 				"addissue.php?title=" +
 				title.value +
 				"&description=" +
@@ -27,23 +27,23 @@ window.onload = function () {
 				"&assignedto=" +
 				selectedUser +
 				"&priority=" +
-				prioritychosen +
+				selectedPriority +
 				"&type=" +
-				typechosen;
+				selectedType;
 
-			hrequest.onreadystatechange = function () {
-				if (hrequest.readyState == XMLHttpRequest.DONE) {
-					if (hrequest.status == 200) {
-						var issue = hrequest.responseText;
-						result.innerHTML = issue;
+				request.onreadystatechange = function () {
+				if (request.readyState == XMLHttpRequest.DONE) {
+					if (request.status == 200) {
+						let prob = request.responseText;
+						result.innerHTML = prob;
 					} else {
-						alert("Error Detected");
+						alert("Error");
 					}
 				}
 			};
 
-			hrequest.open("POST", urlcode, true);
-			hrequest.send();
+			request.open("POST", urlcode, true);
+			request.send();
 			title.value = "";
 			description.value = "";
 		}
@@ -53,24 +53,21 @@ window.onload = function () {
 function Validate() {
 	
     let validchk = true;
-	var title = document.getElementById("title");
-	var description = document.getElementById("description");
-	var userList = document.getElementById("assignedto");
-	var selectedUser = userList.options[userList.selectedIndex].text;
+	let title = document.getElementById("title");
+	let description = document.getElementById("description");
+	let userList = document.getElementById("assignedto");
+	let selectedUser = userList.options[userList.selectedIndex].text;
 
-	if (title.value.length < 1) {
-		title.style.borderColor = "red";
+	if (title.value = "" || title.value == null) {
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;
 	}
-	if (description.value.length < 1) {
-		description.style.borderColor = "red";
+	if (description.value == "" || description.value == null {
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;
 	}
 
 	if (selectedUser == "Please Select") {
-		userList.style.borderColor = "red";
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;
 	}

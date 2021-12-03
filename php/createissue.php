@@ -5,7 +5,7 @@
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $names = "SELECT firstname, lastname FROM users";
     $stmt = $conn->query($names);
-    $allnames = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $n_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $conn = null;
 ?>
@@ -62,7 +62,7 @@ $conn = null;
                 <label class = "formheading"> Assigned To </label><br>
                     <select id="assignedto" name="assignedto">
                         <option id="select">Please Select</option>
-                        <?php foreach ($allnames as $user): ?>
+                        <?php foreach ($n_result as $user): ?>
                         <option> <?php echo $user['firstname']." ".$user['lastname']; ?> </option>
                         <?php endforeach; ?>  
                     </select><br>

@@ -32,8 +32,8 @@ window.onload = function () {
 
 					if (request.status == 200) {
 
-						let issue = request.responseText;
-						result.innerHTML = issue;
+						let prob = request.responseText;
+						result.innerHTML = prob;
 
 					} else {
 
@@ -59,11 +59,11 @@ function Validate() {
     let eregex = /.{1,}@[^.]{1,}/;
 
     if (firstname.value == " " || firstname.value == null) {
-		result.innerHTML = "Make sure to enter all fields";
+		result.innerHTML = "Enter all fields";
 		validchk = false;
 	}
 	if (lastname.value == "" || lastname.value == null) {
-		result.innerHTML = "Make sure to enter all fields";
+		result.innerHTML = "Enter all fields";
 		validchk = false;
 	}
     if (!email.value.match(eregex)) {
