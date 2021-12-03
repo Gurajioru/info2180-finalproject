@@ -16,11 +16,11 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `issues`;
 CREATE TABLE `issues` (
     `id` INTEGER AUTO_INCREMENT,
-    `title` VARCHAR(64),
+    `title` VARCHAR(40),
     `_description` TEXT,
-    `_priority` VARCHAR(64),
-    `_type` VARCHAR(64),
-    `_status` VARCHAR(64),
+    `_priority` VARCHAR(40),
+    `_type` VARCHAR(40),
+    `_status` VARCHAR(40),
     `assigned_to` INTEGER,
     `created_by` INTEGER,
     `created` DATETIME,
