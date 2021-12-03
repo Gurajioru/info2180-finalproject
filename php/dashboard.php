@@ -1,3 +1,16 @@
+<?php
+
+    require_once "conn.php";
+
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $names = "SELECT firstname, lastname FROM users";
+    $stmt = $conn->query($names);
+    $n_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$conn = null;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +19,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INFO2180 Project 2</title>
-    <link rel="stylesheet" href="styles/createuser.css">
-
+    <link rel="stylesheet" href="../styles/issues.css">
+    
 
 </head>
-
-
 <header>
-    <img src="icons/bug-64.png" alt="bug logo" id="bug" />
+    <img src="../icons/bug-64.png" alt="bug logo" id="bug" />
     <h2 id="mainHead">BugMe Issue Tracker</h2>
 </header>
 
@@ -21,53 +32,53 @@
     <aside>
         <div id="sidebar">
             <ul>
-                <li> <a href="#" ><img src="icons/home.png" alt="home" class="side-images"/>
+                <li> <a href="../php/dashboard.php" ><img src="../icons/home.png" alt="home" class="side-images"/>
                     Home</a></li>
                     
-                <li> <a href="#" ><img src="icons/add-user.png" alt="home" class="side-images"/>
+                <li> <a href="../php/createuser.php" ><img src="../icons/add-user.png" alt="home" class="side-images"/>
                     Add User</a></li>
 
-                <li> <a href="#" ><img src="icons/plus.png" alt="home" class="side-images"/>
+                <li> <a href="../php/createissue.php" ><img src="../icons/plus.png" alt="home" class="side-images"/>
                     New Issue</a></li>
 
-                <li> <a href="#" ><img src="icons/power-off.png" alt="home" class="side-images"/>
+                <li> <a href="../php/logout.php" ><img src="../icons/power-off.png" alt="home" class="side-images"/>
                     Logout</a></li>
             </ul>
         </div>         
-
     </aside>
-    
-    <div id = "issues">
-        <h1>Issues</h1>
 
-        <button>Create New Issue</button>
+    <main>
+        <div id="issues-con">
+            <div id="issues-header">
+                <h1>Issues</h1>
+                <button id="new-issue" class="btn">Create New Issue</button>
+            </div>
 
-    <div id = "filter">
+            <ul class="filters">
+                <li>Filter By:</li>
+                <li id="active-item" class="filter-option">ALL</li>
+                <li class="filter-option">OPEN</li>
+                <li class="filter-option">MY TICKETS</li>
+            </ul>
 
+            <table>
+                <thead id="table-header">
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th id="issue-status">Status</th>
+                        <th>Assigned To</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
 
-        <h3> Filter by: </h3>
-        <ul>
-            <li><button id="allissues">  All </button></li>
-            <li><button id="openissues">  Open </button> </li>
-            <li><button id="myissues">  My Tickets </button></li>
-        </ul>
+                <!-- Add the issues from the database -->
+                <tbody id="issue-body">
 
-    </div>
-
-]
-    </div>
-
+                </tbody>
+            </table>
+        </div>
+    </main>
 </div>
-
-<div id = "result">
-
-
-
-    
-</div>
-
-
-
-</body>
-
+</body> 
 </html>

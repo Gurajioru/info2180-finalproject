@@ -25,7 +25,7 @@ $conn = null;
 
 
 <header>
-    <img src="icons/bug-64.png" alt="bug logo" id="bug" />
+    <img src="../icons/bug-64.png" alt="bug logo" id="bug" />
     <h2 id="mainHead">BugMe Issue Tracker</h2>
 </header>
 
