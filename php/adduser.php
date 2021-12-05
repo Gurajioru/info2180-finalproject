@@ -14,7 +14,7 @@
         if(isset($fname) && isset($lname) && isset($pwd) && isset($email)){      
 
             $hashpassword=password_hash($pwd,PASSWORD_DEFAULT);
-            $sql=$conn->prepare('INSERT INTO Users(firstname,lastname,pwrd,email,date_joined)
+            $sql=$conn->prepare('INSERT INTO users(firstname,lastname,pwrd,email,date_joined)
             VALUES (:fname,:lname,:hashpassword,:email,NOW());');
             
             $sql->bindParam(":fname",$fname);

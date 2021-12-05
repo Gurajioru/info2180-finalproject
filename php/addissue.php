@@ -14,17 +14,17 @@ try{
 
     if(isset($title) && isset($description) && isset($assignto) && isset($type) && isset($priority)){      
         
-        $stmt=$conn->prepare("INSERT INTO issues (title, _description, priority, _type, _status, assigned_to, created_by, created, updated)
+        $sql=$conn->prepare("INSERT INTO issues (title, _description, priority, _type, _status, assigned_to, created_by, created, updated)
         VALUES ( :title, :_description,:priority,:_type,:_status,:assignid,:createid , NOW(), NOW());");
 
-        $stmt->bindParam(":title",$title);
-        $stmt->bindParam(":_description", $description);
-        $stmt->bindParam(":priority", $priority);
-        $stmt->bindParam(":_type", $type);
-        $stmt->bindParam(":_status",$status);
-        $stmt->bindParam(":createid", $sessionid);
-        $stmt->bindParam(":assignid", $assignid);
-        $stmt->execute();
+        $sql->bindParam(":title",$title);
+        $sql->bindParam(":_description", $description);
+        $sql->bindParam(":priority", $priority);
+        $sql->bindParam(":_type", $type);
+        $sql->bindParam(":_status",$status);
+        $sql->bindParam(":createid", $sessionid);
+        $sql->bindParam(":assignid", $assignid);
+        $sql->execute();
         echo"New Issue Added.";
     }
 }catch(PDOException $pe) {

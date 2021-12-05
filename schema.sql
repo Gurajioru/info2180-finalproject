@@ -29,3 +29,6 @@ CREATE TABLE `issues` (
 
 
 GRANT ALL PRIVILEGES ON bugme.* TO 'admin'@'localhost' IDENTIFIED BY 'bugmin';
+
+INSERT into users(firstname,lastname,pwrd,email,date_joined)
+VALUES ("admin","account",'$2y$10$/cpZTUG7QJDRGuSU7euCV.UrXs4frTl2c',"admin@project2.com",NOW());

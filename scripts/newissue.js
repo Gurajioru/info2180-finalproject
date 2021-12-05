@@ -20,7 +20,7 @@ window.onload = function () {
 
 			let request = new XMLHttpRequest();
 			let urlcode =
-				"addissue.php?title=" +
+				"../php/addissue.php?title=" +
 				title.value +
 				"&description=" +
 				description.value +

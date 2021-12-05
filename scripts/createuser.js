@@ -17,7 +17,7 @@ window.onload = function () {
 			let request = new XMLHttpRequest();
 
 			var urlcode =
-				"../php/adduserphp.php?firstname=" +
+				"../php/adduser.php?firstname=" +
 				firstname.value +
 				"&lastname=" +
 				lastname.value +
