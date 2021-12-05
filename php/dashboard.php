@@ -37,7 +37,7 @@
     <div id="issues">
         <div class="issues-header">
             <h1>Issues</h1>
-            <button id="create-issue-btn">Create New Issue</button>
+            <button id="create-issue-btn" onclick="location.href='createissue.php'">Create New Issue</button>
         </div>
         <div id="filter">
             <h3> Filter by: </h3>
