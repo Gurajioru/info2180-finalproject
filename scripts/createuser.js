@@ -44,10 +44,7 @@ window.onload = function () {
 
 			request.open("POST", urlcode, true);
 			request.send();
-			firstname.value = "";
-			lastname.value = "";
-			password.value = "";
-			email.value = "";
+			ClearFields()
 		}
 	});
 };
@@ -81,4 +78,14 @@ function Validate() {
 	} else {
 		return false;
 	}
+}
+
+function ClearFields(){
+
+	firstname.value = "";
+	lastname.value = "";
+	password.value = "";
+	email.value = "";
+
+
 }

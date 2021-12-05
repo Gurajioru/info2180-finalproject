@@ -18,7 +18,7 @@ CREATE TABLE `issues` (
     `id` INTEGER AUTO_INCREMENT,
     `title` VARCHAR(40),
     `_description` TEXT,
-    `_priority` VARCHAR(40),
+    `priority` VARCHAR(40),
     `_type` VARCHAR(40),
     `_status` VARCHAR(40),
     `assigned_to` INTEGER,

@@ -44,8 +44,7 @@ window.onload = function () {
 
 			request.open("POST", urlcode, true);
 			request.send();
-			title.value = "";
-			description.value = "";
+			ClearFields();
 		}
 	});
 };
@@ -76,4 +75,11 @@ function Validate() {
 	} else {
 		return false;
 	}
+}
+
+function ClearFields(){
+
+	title.value = "";
+	description.value = "";
+
 }
