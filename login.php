@@ -1,36 +1,47 @@
-<?php
-session_start();
+<?php 
+session_start(); 
 
-function userLogin($emailAddress, $password)
-{
-    if (!(CheckLoginInDB($emailAddress, $password))) {
-        echo "Login Failed";
-        header("Location: index.html");
-    } else {
-        header("Location: ./php/dashboard.php");
+require_once "conn.php";
+
+if (isset($_POST['submit'])) {
+    function validate($data){
+       $data = trim($data);
+       $data = stripslashes($data);
+       $data = htmlspecialchars($data);
+       return $data;
     }
-}
+    $emailaddress = $_POST['emailaddress'];
+    $password = md5($_POST['password']);
+    $sql = "SELECT * FROM `email` WHERE emailaddress = '$emailaddress' AND password = '$password'";
+    $result = mysqli_query($conn,$sql);
+    if ($result -> num_rows > 0){
+        echo "Logged In ";
+    }else{
+        echo "<script> alert(No Users Found with details)</script>"; 
 
-function CheckLoginInDB($emailAddress, $password)
-{
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $checkLoginQuery = "SELECT id, firstname, lastname, email, pwrd FROM users WHERE email ='$emailAddress'";
-    $stmt = $connect->query($checkLoginQuery);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($emailAddress == $result['email'] && (password_verify($password, $result['pwrd']) || MD5($password) == $result['pwrd'])) {
-        $_SESSION["user_id"] = $result['id'];
-        $_SESSION["firstname"] = $result['firstname'];
-        $_SESSION["lastname"] = $result['lastname'];
-        $_SESSION["issue"] = "";
-        return true;
-    } else {
-        return false;
+    if (empty($emailaddress)) {
+        header("Location: login.php?error=Email Address is required");
+        exit();
+    }else if(empty($password)){
+        header("Location: login.php?error=Password is required");
+        exit();
     }
-}
-
-if (isset($_POST['submit_form'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    userLogin($email, $password);
+    if (mysqli_num_rows($result) === 1) {
+            $row = mysqli_fetch_assoc($result);
+            if ($row['emailqaddress'] === $emailaddress && $row['password'] === $password) {
+                echo "Logged in!";
+                header("Location: home.php");  // dashboard setup
+                exit();
+            }else{
+                header("Location: login.php?error=Invalid email address or password");
+                exit();
+            }
+        }else{
+            header("Location: login.php?error=Invalid email address or password");
+            exit();
+        }
+    }
+}else{
+    header("Location: login.php");
+    exit();
 }
