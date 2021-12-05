@@ -16,6 +16,7 @@
             $hashpassword=password_hash($pwd,PASSWORD_DEFAULT);
             $sql=$conn->prepare('INSERT INTO Users(firstname,lastname,pwrd,email,date_joined)
             VALUES (:fname,:lname,:hashpassword,:email,NOW());');
+            
             $sql->bindParam(":fname",$fname);
             $sql->bindParam(":lname", $lname);
             $sql->bindParam(":hashpassword", $hashpassword);

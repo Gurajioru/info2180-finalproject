@@ -54,7 +54,7 @@ $conn = null;
             <div id="result"> </div>
             <form id="createissue"  method="post">
                 <label class = "formheading"> Title </label><br>
-                <input type="text" name="title" id="title"><br>
+                <input required type="text" name="title" id="title" ><br>
                 
                 <label class = "formheading"> Description </label><br>
                 <textarea type="text" id="description" name="description"></textarea><br>

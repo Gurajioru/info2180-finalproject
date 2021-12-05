@@ -16,7 +16,7 @@ window.onload = function () {
 		let type = document.getElementById("type");
 		let selectedType = type.options[type.selectedIndex].text;
 		console.log(title);
-		if (Validate() == true){
+		if (Validate() == true && title.value != ""){
 
 			let request = new XMLHttpRequest();
 			let urlcode =
@@ -52,21 +52,22 @@ window.onload = function () {
 function Validate() {
 	
     let validchk = true;
-	let title = document.getElementById("title");
 	let description = document.getElementById("description");
 	let userList = document.getElementById("assignedto");
 	let selectedUser = userList.options[userList.selectedIndex].text;
 
-	if (title.value = "" || title.value == null) {
-		result.innerHTML = "Please Enter all Fields";
-		validchk = false;
+	if(title.value == ""){
+
+		result.innerHTML = "Enter all Fields";
+
 	}
+
 	if (description.value == "" || description.value == null) {
-		result.innerHTML = "Please Enter all Fields";
+		result.innerHTML = "Enter all Fields";
 		validchk = false;
 	}
 	if (selectedUser == "Please Select") {
-		result.innerHTML = "Please Enter all Fields";
+		result.innerHTML =  "Enter all Fields";
 		validchk = false;
 	}
 
