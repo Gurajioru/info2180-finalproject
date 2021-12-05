@@ -18,18 +18,17 @@
     <aside>
         <div id="sidebar">
             <ul>
-                <li> <a href="#"><img src="./../icons/home.png" alt="home" class="side-images" />
-                        Home</a></li>
+             <li> <a href="../php/dashboard.php" ><img src="../icons/home.png" alt="home" class="side-images"/>
+                    Home</a></li>
+                    
+             <li> <a href="../php/createuser.php" ><img src="../icons/add-user.png" alt="home" class="side-images"/>
+                    Add User</a></li>
 
-                <li> <a href="#"><img src="./../icons/add-user.png" alt="home" class="side-images" />
-                        Add User</a></li>
+             <li> <a href="../php/createissue.php" ><img src="../icons/plus.png" alt="home" class="side-images"/>
+                    New Issue</a></li>
 
-                <li> <a href="#"><img src="./../icons/plus.png" alt="home" class="side-images" />
-                        New Issue</a></li>
-
-                <li> <a href="#"><img src="./../icons/power-off.png" alt="home" class="side-images" />
-                        Logout</a></li>
-            </ul>
+             <li> <a href="../php/logout.php" ><img src="../icons/power-off.png" alt="home" class="side-images"/>
+                    Logout</a></li>
         </div>
 
     </aside>
@@ -37,7 +36,7 @@
     <div id="issues">
         <div class="issues-header">
             <h1>Issues</h1>
-            <button id="create-issue-btn">Create New Issue</button>
+            <a id="create-issue-btn" href="../php/createissue.php" >Create New Issue</a>
         </div>
         <div id="filter">
             <h3> Filter by: </h3>

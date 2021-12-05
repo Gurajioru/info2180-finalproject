@@ -15,7 +15,7 @@ window.onload = function () {
 		let selectedPriority = priority.options[priority.selectedIndex].text;
 		let type = document.getElementById("type");
 		let selectedType = type.options[type.selectedIndex].text;
-
+		console.log(title);
 		if (Validate() == true){
 
 			let request = new XMLHttpRequest();
@@ -62,11 +62,10 @@ function Validate() {
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;
 	}
-	if (description.value == "" || description.value == null {
+	if (description.value == "" || description.value == null) {
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;
 	}
-
 	if (selectedUser == "Please Select") {
 		result.innerHTML = "Please Enter all Fields";
 		validchk = false;

@@ -33,7 +33,7 @@ $status_class_map['INPROGRESS'] = 'status-inprogress';
 </tr>
 <?php foreach ($issues as $issue) : ?>
     <tr>
-        <td><span>#<?= $issue['id']; ?></span> <a href="./issuedetails.php?id=<?= $issue['id']; ?>"> <?= $issue['title']; ?> </a> </td>
+        <td><span>#<?= $issue['id']; ?></span> <a href="./issuedetails.php?id=<?= $issue['id']; ?>"> <?= $issue['title']; ?>  </a> </td>
         <td><?= $issue['_type']; ?></td>
         <td class="status-label"> <span class="status <?= $status_class_map[$issue['_status']]; ?>"> <?= $issue['_status']; ?> <span> </td>
         <td> <?= $issue['assigned_to']; ?> </td>

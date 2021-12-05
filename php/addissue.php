@@ -17,7 +17,7 @@ try{
         $userid = $conn->query("SELECT id FROM users WHERE CONCAT(firstname,' ',lastname)='$assignto' ");
         $alluserid = $userid->fetch(PDO::FETCH_ASSOC);
 
-        $stmt=$conn->prepare("INSERT INTO issues (title, _description, _priority, _type, _status, assigned_to, created_by, created, updated)
+        $stmt=$conn->prepare("INSERT INTO issues (title, _description, priority, _type, _status, assigned_to, created_by, created, updated)
         VALUES ( :title, :_description,:priority,:_type,:_status,:assignid,:createid , NOW(), NOW());");
 
         $stmt->bindParam(":title",$title);
